@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "799993789155",
+    "firebase_url": "https://chamadoslogin.firebaseio.com",
+    "project_id": "chamadoslogin",
+    "storage_bucket": "chamadoslogin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799993789155:android:46f64408971fa3f2",
+        "android_client_info": {
+          "package_name": "com.example.pedrohbcavalcante.chamados"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799993789155-t2pab3eal7tap1i76865bd88knnb90fc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pedrohbcavalcante.chamados",
+            "certificate_hash": "f847e282d0ab53062e5fa2546bad81ffb24a248c"
+          }
+        },
+        {
+          "client_id": "799993789155-fca5if4tqb3hvv2ld84c4dkan1cr3bjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ18-bpuUNSm3CosaKTCsdfUzHon5gutw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799993789155-fca5if4tqb3hvv2ld84c4dkan1cr3bjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
