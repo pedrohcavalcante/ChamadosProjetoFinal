@@ -91,15 +91,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_atendimento) {
-            //TODO TELA EM ATENDIMENTO
+            //TODO TELA EM ATENDIMENTO (que tal utilizar grafments?)
         } else if (id == R.id.nav_finalizados) {
-            //TODO TELA FINALIZADO
+            //TODO TELA FINALIZADO (que tal utilizar grafments?)
         } else if (id == R.id.nav_share) {
             Toast.makeText(this, "TBA", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
             Toast.makeText(this, "TBA", Toast.LENGTH_SHORT).show();
         } else if(id == R.id.nav_about){
-            //TODO TELA ABOUT
+            //TODO TELA ABOUT (utilizar um fragment popup)
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
