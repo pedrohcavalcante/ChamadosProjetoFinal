@@ -24,11 +24,13 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_cadastro_solicitacao);
         tipoProblemaSelec = findViewById(R.id.tipoProbSelecionado);
         tipoParaSelec = findViewById(R.id.paraSelecionado);
         tipoServicoSelec = findViewById(R.id.servicoSelecionado);
         mImageView = findViewById(R.id.image_foto_capturada);
+
     }
 
     public void selecionarTipoProblema(View view) {
