@@ -112,7 +112,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/assunto_txt"
-
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:text="Descrição:"
 
         />
@@ -125,5 +126,40 @@
         android:layout_alignBaseline="@+id/descricao_txt"
         android:layout_toRightOf="@+id/descricao_txt"
         android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/image_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descricao_txt"
+        android:layout_alignStart="@+id/servico_txt"
+        android:layout_marginTop="22dp"
+        android:text="Tirar Foto" />
+
+    <Button
+        android:id="@+id/tirar_foto_botao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/image_txt"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@+id/image_txt"
+        android:text="Tirar Foto"
+        android:onClick="tirarFoto"/>
+
+    <ImageView
+        android:id="@+id/image_foto_capturada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_txt"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="27dp"
+        android:onClick="enviarChamado"/>
+        "/>
 
 </RelativeLayout>

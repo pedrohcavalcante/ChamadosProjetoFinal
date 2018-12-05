@@ -11,10 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class CadastroSolicitacaoActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     TextView tipoProblemaSelec;
+    TextView tipoParaSelec;
+    TextView tipoServicoSelec;
     private ImageView mImageView;
 
     @Override
@@ -22,6 +26,9 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_solicitacao);
         tipoProblemaSelec = findViewById(R.id.tipoProbSelecionado);
+        tipoParaSelec = findViewById(R.id.paraSelecionado);
+        tipoServicoSelec = findViewById(R.id.servicoSelecionado);
+        mImageView = findViewById(R.id.image_foto_capturada);
     }
 
     public void selecionarTipoProblema(View view) {
@@ -34,11 +41,27 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
     }
 
     public void selecionarPara(View view) {
+        ParaLista.show(getSupportFragmentManager(), new ParaLista.onParaListener() {
+            @Override
+            public void onSelectPara(String text) {
+                tipoParaSelec.setText(text);
+            }
+        });
 
     }
 
     public void selecionarServico(View view) {
 
+        ServicosLista.show(getSupportFragmentManager(), new ServicosLista.onServicoListener() {
+            @Override
+            public void onServicoSelect(String text) {
+                tipoServicoSelec.setText(text);
+            }
+        });
+    }
+
+    public void tirarFoto(View view) {
+        dispatchTakePictureIntent();
     }
 
     private void dispatchTakePictureIntent(){
@@ -55,5 +78,10 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
         }
+    }
+
+
+    public void enviarChamado(View view) {
+
     }
 }
