@@ -20,4 +20,45 @@
         completions."
     </string>
     <string name="title_activity_login2">Sign in</string>
+
+    <string-array name="tipos_problemas">
+        <item>Problema</item>
+        <item>Solicitacao</item>
+        
+    </string-array>
+    
+    <string-array name="para">
+        <item>Diretoria de TI</item>
+        <item>Patrimonio</item>
+        <item>Recursos Humanos</item>
+    </string-array>
+    
+    <string-array name="servicos_diretoria_ti">
+        <item>Criação de Lista de E-mail</item>
+        <item>Empréstimo de Equipamento</item>
+        <item>Instalação de Software</item>
+        <item>Manutenção de Equipamentos</item>
+        <item>Outros</item>
+        <item>Solicitação de Atendimento</item>
+        <item>Videoconferência</item>
+        <item>Acesso à Internet</item>
+        <item>Acesso à Wi-Fi</item>
+        <item>Serviços de Firewall</item>
+        <item>Solicitação de IP Externo</item>
+        <item>Solicitação de IP Interno</item>
+        <item>Alteração da Infraestrutura de Sistema</item>
+        <item>Atualização de Sistema</item>
+        <item>Consulta ao Banco de Dados</item>
+        <item>Encaminhamento de Nova Sprint de Desenvolvimento</item>
+        <item>Encaminhamento de Solicitação de Novo Sistema</item>
+        <item>Orientação ao Usuário</item>
+    </string-array>
+    
+    <string-array name="servicos_patrimonio">
+        <item>Outros</item>
+    </string-array>
+    
+    <string-array name="servicos_recursos_humanos">
+        <item>Outros</item>
+    </string-array>
 </resources>
