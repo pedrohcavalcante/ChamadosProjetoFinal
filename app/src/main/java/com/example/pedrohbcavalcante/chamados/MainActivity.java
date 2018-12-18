@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intentRecebida = getIntent();
+        final Usuario usuarioLogado = (Usuario) intentRecebida.getSerializableExtra("usuario");
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -37,7 +43,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(MainActivity.this, CadastroSolicitacaoActivity.class));
+                Intent cadastrarSolicitacaoIntent = new Intent(MainActivity.this, CadastroSolicitacaoActivity.class);
+                cadastrarSolicitacaoIntent.putExtra("usuario", usuarioLogado);
+               startActivity(cadastrarSolicitacaoIntent);
             }
         });
 
@@ -50,9 +58,19 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
         userNameSideBar = view.findViewById(R.id.user_name_side_bar);
-        userNameSideBar.setText("teste");
+        userNameSideBar.setText(usuarioLogado.getName());
+
+        userEmail = view.findViewById(R.id.user_email);
+        userEmail.setText(usuarioLogado.getUsername());
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        SolicitacoesAdapter solicitacoesAdapter = new SolicitacoesAdapter(this);
+        solicitacoesAdapter.setUserLogged(usuarioLogado);
+        recyclerView.setAdapter(solicitacoesAdapter);
     }
 
     @Override

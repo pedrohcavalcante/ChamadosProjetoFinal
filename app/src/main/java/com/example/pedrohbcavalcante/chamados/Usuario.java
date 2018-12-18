@@ -1,8 +1,9 @@
 package com.example.pedrohbcavalcante.chamados;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private long ID;
     private String name;
     private String username;

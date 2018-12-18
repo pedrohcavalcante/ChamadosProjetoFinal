@@ -35,22 +35,37 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.UUID;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class CadastroSolicitacaoActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     TextView tipoProblemaSelec;
     TextView tipoParaSelec;
     TextView tipoServicoSelec;
+    TextView assuntoInserido;
+    TextView descricaoInserida;
     private ImageView mImageView;
+    private final String BASE_URL = "http://10.7.8.141:8080/api/";
+
+    private Retrofit enviarSolicitacaoRetrofit;
 
     private FirebaseStorage firebaseStorage;
 
     private StorageReference storageReference;
     private Uri filePath;
     String url_referencia = null;
+    private Usuario userLogado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent recebendoUsuarioIntent = getIntent();
+        userLogado = (Usuario) recebendoUsuarioIntent.getSerializableExtra("usuario");
 
         setContentView(R.layout.activity_cadastro_solicitacao);
 
@@ -60,9 +75,18 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
 
         tipoServicoSelec = findViewById(R.id.servicoSelecionado);
 
+        assuntoInserido = findViewById(R.id.assunto_txt);
+
+        descricaoInserida = findViewById(R.id.descricao_txt);
+
         mImageView = findViewById(R.id.image_foto_capturada);
 
         firebaseStorage = FirebaseStorage.getInstance();
+
+        enviarSolicitacaoRetrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         permissao();
 
@@ -180,10 +204,40 @@ public class CadastroSolicitacaoActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
+
                     Log.i("TakePicture", nome_imagem.getDownloadUrl().toString());
                     Log.i("TakePicture", nome_imagem.getName());
 
-                    Toast.makeText(CadastroSolicitacaoActivity.this, "Sucesso no upload em " + url_referencia, Toast.LENGTH_LONG).show();
+                    SolicitacaoService solicitacaoService = enviarSolicitacaoRetrofit.create(SolicitacaoService.class);
+                    Solicitacao solicitacao = new Solicitacao(
+                            userLogado.getID(),
+                            23223,
+                            assuntoInserido.getText().toString(),
+                            tipoParaSelec.getText().toString(),
+                            descricaoInserida.getText().toString(),
+                            tipoServicoSelec.getText().toString(),
+                            assuntoInserido.getText().toString(),
+                            descricaoInserida.getText().toString(),
+                            nome_imagem.getName(),
+                            "B430",
+                            "22",
+                            "Cadastrado"
+                            );
+                    Call<Solicitacao> call = solicitacaoService.enviarSolicitacao(solicitacao);
+                    call.enqueue(new Callback<Solicitacao>() {
+                        @Override
+                        public void onResponse(Call<Solicitacao> call, Response<Solicitacao> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(CadastroSolicitacaoActivity.this, "cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Solicitacao> call, Throwable t) {
+                            Toast.makeText(CadastroSolicitacaoActivity.this, "erro ao cadastrar solicitacao", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    //Toast.makeText(CadastroSolicitacaoActivity.this, "Sucesso no upload em " + url_referencia, Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(CadastroSolicitacaoActivity.this, "Falha no upload", Toast.LENGTH_SHORT).show();

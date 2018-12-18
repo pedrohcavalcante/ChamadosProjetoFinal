@@ -3,7 +3,7 @@ package com.example.pedrohbcavalcante.chamados;
 import java.util.Objects;
 
 public class Solicitacao {
-    private long ID;
+   /* private long ID;*/
 
     private long userID;
     private long ticket;
@@ -18,8 +18,16 @@ public class Solicitacao {
     private String ramal;
     private String status;
 
-    public Solicitacao(long ID, long userID, long ticket, String titulo, String tipo, String descricao, String servico, String assunto, String texto, String URL_anexo, String sala, String ramal, String status) {
-        this.ID = ID;
+    public Solicitacao(/*long ID,*/ long userID, long ticket, String titulo, String status){
+       /* this.ID = ID;*/
+        this.userID = userID;
+        this.ticket = ticket;
+        this.titulo = titulo;
+        this.status = status;
+    }
+
+    public Solicitacao(long userID, long ticket, String titulo, String tipo, String descricao, String servico, String assunto, String texto, String URL_anexo, String sala, String ramal, String status) {
+        /*this.ID = ID;*/
         this.userID = userID;
         this.ticket = ticket;
         this.titulo = titulo;
@@ -34,13 +42,13 @@ public class Solicitacao {
         this.status = status;
     }
 
-    public long getID() {
+   /* public long getID() {
         return ID;
     }
 
     public void setID(long ID) {
         this.ID = ID;
-    }
+    }*/
 
     public long getUserID() {
         return userID;
@@ -143,7 +151,7 @@ public class Solicitacao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Solicitacao that = (Solicitacao) o;
-        return ID == that.ID &&
+        return /*ID == that.ID &&*/
                 userID == that.userID &&
                 ticket == that.ticket &&
                 Objects.equals(titulo, that.titulo) &&
@@ -161,13 +169,13 @@ public class Solicitacao {
     @Override
     public int hashCode() {
 
-        return Objects.hash(ID, userID, ticket, titulo, tipo, descricao, servico, assunto, texto, URL_anexo, sala, ramal, status);
+        return Objects.hash(/*ID,*/ userID, ticket, titulo, tipo, descricao, servico, assunto, texto, URL_anexo, sala, ramal, status);
     }
 
     @Override
     public String toString() {
         return "Solicitacao{" +
-                "ID=" + ID +
+               /* "ID=" + ID +*/
                 ", userID=" + userID +
                 ", ticket=" + ticket +
                 ", titulo='" + titulo + '\'' +
